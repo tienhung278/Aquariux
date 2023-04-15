@@ -8,17 +8,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/buy")
-public class BuyController {
+@RequestMapping("/price")
+public class PriceController {
 
-    private final PriceService priceService;
+    private PriceService priceService;
 
-    public BuyController(PriceService priceService) {
+    public PriceController(PriceService priceService) {
         this.priceService = priceService;
     }
 
-    @GetMapping("/latest/{symbol}")
+    @GetMapping("/buy/{symbol}")
     public ReadCrypto getLatestBestBuy(@PathVariable String symbol) {
         return priceService.getLatestBestBuyPrice(symbol.toUpperCase());
+    }
+
+    @GetMapping("/sell/{symbol}")
+    public ReadCrypto getLatestBestSell(@PathVariable String symbol) {
+        return priceService.getLatestBestSellPrice(symbol.toUpperCase());
     }
 }
