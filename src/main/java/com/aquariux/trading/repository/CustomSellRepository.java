@@ -1,6 +1,8 @@
 package com.aquariux.trading.repository;
 
+import com.aquariux.trading.entity.Sell;
+
 public interface CustomSellRepository {
 
-    Double getLatestBestSellPrice(String symbol);
+    Sell getLatestBestSellPrice(String symbol);
 }

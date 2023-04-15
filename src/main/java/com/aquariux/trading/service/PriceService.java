@@ -1,5 +1,6 @@
 package com.aquariux.trading.service;
 
+import com.aquariux.trading.dto.ReadCrypto;
 import com.aquariux.trading.model.Crypto;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface PriceService {
 
     void addBestSellPrice(Crypto crypto);
 
-    Double getLatestBestBuyPrice(String symbol);
+    ReadCrypto getLatestBestBuyPrice(String symbol);
 
-    Double getLatestBestSellPrice(String symbol);
+    ReadCrypto getLatestBestSellPrice(String symbol);
 }

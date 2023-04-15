@@ -5,20 +5,26 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
-@Table(name = "Sell")
+@Table(name = "BuyTrans")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Sell {
+public class BuyTrans {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "symbol")
-    private String symbol;
+    @Column(name = "created_by")
+    private String createdBy;
 
-    @Column(name = "price")
-    private Double price;
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @ManyToOne
+    @JoinColumn(name = "buy_id")
+    private Buy crypto;
 }

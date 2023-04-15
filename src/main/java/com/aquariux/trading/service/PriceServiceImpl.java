@@ -1,5 +1,6 @@
 package com.aquariux.trading.service;
 
+import com.aquariux.trading.dto.ReadCrypto;
 import com.aquariux.trading.entity.Buy;
 import com.aquariux.trading.entity.Sell;
 import com.aquariux.trading.model.Crypto;
@@ -68,13 +69,15 @@ public class PriceServiceImpl implements PriceService {
     }
 
     @Override
-    public Double getLatestBestBuyPrice(String symbol) {
-        return buyRepository.getLatestBestBuyPrice(symbol);
+    public ReadCrypto getLatestBestBuyPrice(String symbol) {
+        Buy crypto = buyRepository.getLatestBestBuyPrice(symbol);
+        return new ReadCrypto(crypto.getId(), crypto.getSymbol(), crypto.getPrice());
     }
 
     @Override
-    public Double getLatestBestSellPrice(String symbol) {
-        return sellRepository.getLatestBestSellPrice(symbol);
+    public ReadCrypto getLatestBestSellPrice(String symbol) {
+        Sell crypto = sellRepository.getLatestBestSellPrice(symbol);
+        return new ReadCrypto(crypto.getId(), crypto.getSymbol(), crypto.getPrice());
     }
 
     private Buy convertToBuy(Crypto crypto) {

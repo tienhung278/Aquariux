@@ -1,9 +1,12 @@
 package com.aquariux.trading.repository;
 
+import com.aquariux.trading.entity.Sell;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class CustomSellRepositoryImpl implements CustomSellRepository {
 
     private final EntityManager entityManager;
@@ -14,12 +17,12 @@ public class CustomSellRepositoryImpl implements CustomSellRepository {
     }
 
     @Override
-    public Double getLatestBestSellPrice(String symbol) {
+    public Sell getLatestBestSellPrice(String symbol) {
         try {
-            return (Double) entityManager.createNativeQuery("SELECT TOP 1 price " +
+            return (Sell) entityManager.createNativeQuery("SELECT TOP 1 * " +
                             "FROM Sell " +
                             "WHERE symbol = :symbol " +
-                            "ORDER BY id DESC", Double.class)
+                            "ORDER BY id DESC", Sell.class)
                     .setParameter("symbol", symbol)
                     .getSingleResult();
         } catch (NoResultException ex) {

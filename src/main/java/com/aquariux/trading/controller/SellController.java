@@ -1,5 +1,6 @@
 package com.aquariux.trading.controller;
 
+import com.aquariux.trading.dto.ReadCrypto;
 import com.aquariux.trading.service.PriceService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +18,7 @@ public class SellController {
     }
 
     @GetMapping("/latest/{symbol}")
-    public Double getLatestBestSell(@PathVariable String symbol) {
+    public ReadCrypto getLatestBestSell(@PathVariable String symbol) {
         return priceService.getLatestBestSellPrice(symbol.toUpperCase());
     }
 

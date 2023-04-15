@@ -1,5 +1,6 @@
 package com.aquariux.trading.repository;
 
+import com.aquariux.trading.entity.Buy;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,12 @@ public class CustomBuyRepositoryImpl implements CustomBuyRepository {
     }
 
     @Override
-    public Double getLatestBestBuyPrice(String symbol) {
+    public Buy getLatestBestBuyPrice(String symbol) {
         try {
-            return (Double) entityManager.createNativeQuery("SELECT TOP 1 price " +
+            return (Buy) entityManager.createNativeQuery("SELECT TOP 1 * " +
                             "FROM Buy " +
                             "WHERE symbol = :symbol " +
-                            "ORDER BY id DESC", Double.class)
+                            "ORDER BY id DESC", Buy.class)
                     .setParameter("symbol", symbol)
                     .getSingleResult();
         } catch (NoResultException ex) {

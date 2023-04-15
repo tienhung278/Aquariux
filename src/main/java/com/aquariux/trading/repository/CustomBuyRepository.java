@@ -1,6 +1,8 @@
 package com.aquariux.trading.repository;
 
+import com.aquariux.trading.entity.Buy;
+
 public interface CustomBuyRepository {
 
-    Double getLatestBestBuyPrice(String symbol);
+    Buy getLatestBestBuyPrice(String symbol);
 }
