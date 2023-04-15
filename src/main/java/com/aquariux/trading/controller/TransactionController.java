@@ -1,9 +1,10 @@
 package com.aquariux.trading.controller;
 
+import com.aquariux.trading.dto.WriteTrans;
 import com.aquariux.trading.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,13 +19,13 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-    @PostMapping("/buy/{userId}/{id}")
-    public void createBuyTransaction(@PathVariable String userId, @PathVariable Long id) {
-        transactionService.addBuyTransaction(userId, id);
+    @PostMapping("/buy")
+    public void createBuyTransaction(@RequestBody WriteTrans writeTrans) {
+        transactionService.addBuyTransaction(writeTrans);
     }
 
-    @PostMapping("/sell/{userId}/{id}")
-    public void createSellTransaction(@PathVariable String userId, @PathVariable Long id) {
-        transactionService.addSellTransaction(userId, id);
+    @PostMapping("/sell")
+    public void createSellTransaction(@RequestBody WriteTrans writeTrans) {
+        transactionService.addSellTransaction(writeTrans);
     }
 }

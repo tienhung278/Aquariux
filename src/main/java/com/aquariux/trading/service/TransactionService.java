@@ -1,8 +1,10 @@
 package com.aquariux.trading.service;
 
+import com.aquariux.trading.dto.WriteTrans;
+
 public interface TransactionService {
 
-    void addBuyTransaction(String userId, Long cryptoId);
+    void addBuyTransaction(WriteTrans writeTrans);
 
-    void addSellTransaction(String userId, Long cryptoId);
+    void addSellTransaction(WriteTrans writeTrans);
 }

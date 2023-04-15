@@ -1,5 +1,6 @@
 package com.aquariux.trading.service;
 
+import com.aquariux.trading.dto.WriteTrans;
 import com.aquariux.trading.entity.Buy;
 import com.aquariux.trading.entity.BuyTrans;
 import com.aquariux.trading.entity.Sell;
@@ -34,17 +35,17 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public void addBuyTransaction(String userId, Long cryptoId) {
+    public void addBuyTransaction(WriteTrans writeTrans) {
         Buy crypto = null;
 
-        Optional<Buy> optionalCrypto = buyRepository.findById(cryptoId);
+        Optional<Buy> optionalCrypto = buyRepository.findById(writeTrans.getCryptoId());
 
         if (optionalCrypto.isPresent()) {
             crypto = optionalCrypto.get();
 
             BuyTrans buyTrans = new BuyTrans();
             buyTrans.setCrypto(crypto);
-            buyTrans.setCreatedBy(userId);
+            buyTrans.setCreatedBy(writeTrans.getUserId());
             buyTrans.setCreatedAt(LocalDateTime.now());
 
             buyTransRepository.save(buyTrans);
@@ -54,17 +55,17 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public void addSellTransaction(String userId, Long cryptoId) {
+    public void addSellTransaction(WriteTrans writeTrans) {
         Sell crypto = null;
 
-        Optional<Sell> optionalCrypto = sellRepository.findById(cryptoId);
+        Optional<Sell> optionalCrypto = sellRepository.findById(writeTrans.getCryptoId());
 
         if (optionalCrypto.isPresent()) {
             crypto = optionalCrypto.get();
 
             SellTrans sellTrans = new SellTrans();
             sellTrans.setCrypto(crypto);
-            sellTrans.setCreatedBy(userId);
+            sellTrans.setCreatedBy(writeTrans.getUserId());
             sellTrans.setCreatedAt(LocalDateTime.now());
 
             sellTransRepository.save(sellTrans);
