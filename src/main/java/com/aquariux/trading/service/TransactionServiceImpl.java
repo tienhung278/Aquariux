@@ -49,7 +49,7 @@ public class TransactionServiceImpl implements TransactionService {
 
             buyTransRepository.save(buyTrans);
         } else {
-            throw new IllegalArgumentException("Id was not found");
+            throw new IllegalArgumentException();
         }
     }
 
@@ -69,7 +69,7 @@ public class TransactionServiceImpl implements TransactionService {
 
             sellTransRepository.save(sellTrans);
         } else {
-            throw new IllegalArgumentException("Id was not found");
+            throw new IllegalArgumentException();
         }
     }
 }
