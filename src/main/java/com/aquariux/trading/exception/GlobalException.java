@@ -13,7 +13,7 @@ public class GlobalException {
     @ExceptionHandler
     public ResponseEntity<Error> handleInvalidArgumentException(IllegalArgumentException ex) {
         Error error = new Error();
-        error.setMessage("Id was invalid");
+        error.setMessage("Id or UserId was invalid");
 
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
