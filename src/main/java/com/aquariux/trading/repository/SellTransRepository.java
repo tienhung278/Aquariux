@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SellTransRepository extends JpaRepository<SellTrans, Long> {
+public interface SellTransRepository extends JpaRepository<SellTrans, Long>, CustomSellTransRepository {
 }
