@@ -61,10 +61,10 @@ public class TransactionServiceImpl implements TransactionService {
 
                 walletRepository.save(wallet);
             } else {
-                throw new RuntimeException();
+                throw new IllegalStateException("balance is not enough");
             }
         } else {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("cryptoId or userId was invalid");
         }
     }
 
@@ -92,7 +92,7 @@ public class TransactionServiceImpl implements TransactionService {
 
             walletRepository.save(wallet);
         } else {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("cryptoId or userId was invalid");
         }
     }
 

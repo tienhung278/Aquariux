@@ -13,7 +13,7 @@ public class GlobalException {
     @ExceptionHandler
     public ResponseEntity<Error> handleInvalidArgumentException(IllegalArgumentException ex) {
         Error error = new Error();
-        error.setMessage("Id or UserId was invalid");
+        error.setMessage(ex.getMessage());
 
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
@@ -21,13 +21,13 @@ public class GlobalException {
     @ExceptionHandler
     public ResponseEntity<Error> handleNoResultException(NoResultException ex) {
         Error error = new Error();
-        error.setMessage("Symbol was invalid");
+        error.setMessage(ex.getMessage());
 
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
-    public ResponseEntity<Error> handleRuntimeException(RuntimeException ex) {
+    public ResponseEntity<Error> handleRuntimeException(IllegalStateException ex) {
         Error error = new Error();
         error.setMessage(ex.getMessage());
 
